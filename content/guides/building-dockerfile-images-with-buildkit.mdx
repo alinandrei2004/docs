@@ -1,20 +1,14 @@
 ---
 title: Building Dockerfile Images with Buildkit
+
 description: |
   This guide shows how to install buildkit to allow you to build Dockerfile images with Unikraft.
 ---
-Unikraft uses BuildKit, along with Dockerfiles, to construct the root filesystem used by applications.
+Unikraft uses [BuildKit](https://docs.docker.com/build/buildkit/), along with [Dockerfiles](https://docs.docker.com/reference/dockerfile/), to construct the root filesystem used by applications.
 
+You can install BuildKit by either running it natively via systemd or in a container. Please refer to [BuildKit's installation instructions](https://github.com/moby/buildkit) for more information.
 
-You can install BuildKit by either running it natively via systemd or in a
-container. Please refer to [BuildKit's installation
-instructions](https://github.com/moby/buildkit) for more information.
-
-To use BuildKit with Docker on your system, you first need to install Docker
-following the [official
-instructions](https://docs.docker.com/engine/install/). This can be either
-[Docker Engine](https://docs.docker.com/engine/) or [Docker
-Desktop](https://docs.docker.com/desktop/).
+To use BuildKit with Docker on your system, you first need to install Docker following the [official instructions](https://docs.docker.com/engine/install/). This can be either [Docker Engine](https://docs.docker.com/engine/) or [Docker Desktop](https://docs.docker.com/desktop/).
 
 After installing Docker, you can run BuildKit in a container via:
 
@@ -22,8 +16,7 @@ After installing Docker, you can run BuildKit in a container via:
 docker run -d --name buildkitd --privileged moby/buildkit:latest
 ```
 
-Now instruct `kraft` to use the BuildKit instance from the `buildkitd` container
-by either setting the environmental variable:
+Now instruct `kraft` to use the BuildKit instance from the `buildkitd` container by either setting the environmental variable:
 
 ```bash
 export KRAFTKIT_BUILDKIT_HOST=docker-container://buildkitd
